@@ -76,7 +76,7 @@ export default function ProductDetail() {
         payload: currentUser?.user?._id,
       })
     } catch (error) {
-      toast.error(error.message)
+      toast.error('Unable to like, pls sign in')
     }
   }
 
@@ -92,7 +92,7 @@ export default function ProductDetail() {
         payload: currentUser?.user?._id,
       })
     } catch (error) {
-      toast.error(error.message)
+      toast.error("Something went wrong")
     }
   }
 
