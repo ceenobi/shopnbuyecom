@@ -24,7 +24,7 @@ export default function ShoppingBagModal() {
   return (
     <>
       <div
-        className='position-relative'
+        className='position-relative mx-4'
         onClick={location.pathname === '/bag' ? null : handleShow}
       >
         <ShoppingBag color='black' style={{ cursor: 'pointer' }} />

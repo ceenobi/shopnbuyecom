@@ -62,9 +62,9 @@ export default function Navbar() {
                   ))}
                 </Dropdown.Menu>
               </Dropdown>
-              <div className='d-flex gap-4 align-items-center ms-auto'>
+              <div className='d-flex align-items-center ms-auto'>
                 <Search
-                  type='button'
+                  style={{ cursor: 'pointer' }}
                   onClick={() => setShowSearch(!showSearch)}
                 />
                 <ShoppingBag />
@@ -127,7 +127,7 @@ export default function Navbar() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               <X
-                type='button'
+                style={{ cursor: 'pointer' }}
                 className='position-absolute top-50 end-0 translate-middle'
                 onClick={() => setShowSearch(!showSearch)}
               />

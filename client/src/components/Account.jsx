@@ -64,7 +64,7 @@ export default function Account() {
 
   return (
     <>
-      <User type='button' size='30px' onClick={handleShow} />
+      <User style={{ cursor: 'pointer' }} size='30px' onClick={handleShow} />
       <Modal show={show} onHide={handleClose} backdrop='static' centered>
         <Modal.Body>
           <div className='text-end w-100'>
