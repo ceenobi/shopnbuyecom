@@ -123,6 +123,7 @@ export default function Navbar() {
                 type='text'
                 placeholder='Search for shoes, beauty, and more...'
                 className='position-absolute top-50 start-50 translate-middle search'
+                autoFocus
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
