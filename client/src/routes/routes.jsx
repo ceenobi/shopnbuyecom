@@ -19,7 +19,7 @@ import {
   Reset,
 } from '../pages'
 import Root from '../components/Root'
-import ProtectedRoutes from './protectedRoutes'
+import ProtectedRoutes from './ProtectedRoutes'
 import { Error } from '../components'
 
 export default function Routes() {
