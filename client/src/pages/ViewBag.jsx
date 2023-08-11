@@ -71,19 +71,19 @@ export default function ViewBag() {
                   style={{ width: '100px' }}
                 >
                   <Minus
-                    type='button'
+                    style={{ cursor: 'pointer' }}
                     size='16px'
                     onClick={() => decreaseBagQuantity(item)}
                   />
                   <span className='fs-5 fw-medium'>{item.quantity}</span>
                   <Plus
-                    type='button'
+                    style={{ cursor: 'pointer' }}
                     size='16px'
                     onClick={() => increaseBagQuantity(item)}
                   />
                 </div>
                 <Trash2
-                  type='button'
+                  style={{ cursor: 'pointer' }}
                   size='16px'
                   onClick={() => removeFromBag(item._id)}
                   className='hideTrash'

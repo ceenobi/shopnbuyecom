@@ -66,7 +66,7 @@ export default function ShoppingBagModal() {
                         <div className='d-flex justify-content-between align-items-center qtyBox'>
                           <div className='d-flex gap-2 align-items-center border border-black bg-white rounded-1 p-2'>
                             <Minus
-                              type='button'
+                              style={{ cursor: 'pointer' }}
                               size='16px'
                               onClick={() => decreaseBagQuantity(item)}
                             />
@@ -74,7 +74,7 @@ export default function ShoppingBagModal() {
                               {item.quantity}
                             </span>
                             <Plus
-                              type='button'
+                              style={{ cursor: 'pointer' }}
                               size='16px'
                               onClick={() => increaseBagQuantity(item)}
                             />
@@ -83,7 +83,7 @@ export default function ShoppingBagModal() {
                             {formatCurrency(item.price)}
                           </span>
                           <Trash2
-                            type='button'
+                            style={{ cursor: 'pointer' }}
                             size='16px'
                             onClick={() => removeFromBag(item._id)}
                             className='hideTrash'

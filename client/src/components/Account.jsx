@@ -126,7 +126,6 @@ export default function Account() {
                 ) : (
                   <Eye
                     className='position-absolute end-0 translate-middle'
-                    type='button'
                     style={{ top: isSignup ? '50%' : '25%', cursor: 'pointer' }}
                     onClick={togglePassword}
                   />
