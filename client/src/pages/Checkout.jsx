@@ -167,7 +167,6 @@ export default function Checkout() {
                       placeholder='Address'
                       id='address'
                       className='w-100 inputReg mb-0'
-                      autoFocus
                       {...register(
                         `shippingAddress`,
                         registerOptions.shippingAddress
@@ -185,7 +184,6 @@ export default function Checkout() {
                       placeholder='Phone'
                       id='phone'
                       className='w-100 inputReg mb-0'
-                      autoFocus
                       {...register(`phone`, registerOptions.phone)}
                     />
                     {errors?.phone?.message && (
@@ -198,7 +196,6 @@ export default function Checkout() {
                       placeholder='State'
                       id='state'
                       className='w-100 inputReg mb-0'
-                      autoFocus
                       {...register(`state`, registerOptions.state)}
                     />
                     {errors?.state?.message && (
