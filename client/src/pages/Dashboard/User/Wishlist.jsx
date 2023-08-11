@@ -94,7 +94,7 @@ export default function Wishlist() {
                         ADD TO BAG
                       </Button>
                       <Trash2
-                        type='button'
+                        style={{cursor: 'pointer'}}
                         size='16px'
                         title='remove'
                         onClick={() => removeFromWishlist(item._id)}
