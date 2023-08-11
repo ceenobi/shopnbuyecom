@@ -24,7 +24,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className='p-2 shadow fixed-top z-3 w-100 bg-white'>
+    <nav className='py-2 px-3 shadow fixed-top z-3 w-100 bg-white'>
       <div className='layout-container'>
         <div className='d-flex align-items-center'>
           {!showSearch && (
@@ -62,7 +62,7 @@ export default function Navbar() {
                   ))}
                 </Dropdown.Menu>
               </Dropdown>
-              <div className='d-flex gap-3 gap-lg-4 align-items-center ms-auto'>
+              <div className='d-flex gap-4 align-items-center ms-auto'>
                 <Search
                   type='button'
                   onClick={() => setShowSearch(!showSearch)}
