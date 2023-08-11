@@ -4,16 +4,19 @@ import { Minus, Plus, Trash2 } from 'react-feather'
 import { HeaderLayout, PageLayout } from '../components'
 import Breadcrumbs from '../utils/Breadcrumbs'
 import { useStore } from '../hooks/store'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { formatCurrency } from '../utils/formatCurrency'
+import { toast } from 'react-hot-toast'
 
 export default function ViewBag() {
+  const navigate = useNavigate()
   const {
     bagItems,
     removeFromBag,
     increaseBagQuantity,
     decreaseBagQuantity,
     priceTotal,
+    currentUser,
   } = useStore()
 
   useEffect(() => {
@@ -112,8 +115,11 @@ export default function ViewBag() {
             <Button
               variant='dark'
               className='rounded-0 fw-bold w-100'
-              as={Link}
-              to='/checkout'
+              onClick={() => {
+                currentUser
+                  ? navigate('/checkout')
+                  : toast.error('Please Sign in to continue')
+              }}
             >
               Checkout
             </Button>

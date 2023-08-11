@@ -1,7 +1,7 @@
 import { Button, Badge, Offcanvas, Image } from 'react-bootstrap'
 import { ShoppingBag, Minus, Plus, Trash2 } from 'react-feather'
 import { useStore } from '../hooks/store'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { formatCurrency } from '../utils/formatCurrency'
 import { toast } from 'react-hot-toast'
 
@@ -18,6 +18,7 @@ export default function ShoppingBagModal() {
     currentUser,
   } = useStore()
   const location = useLocation()
+  const navigate = useNavigate()
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
@@ -115,13 +116,12 @@ export default function ShoppingBagModal() {
                 <Button
                   variant='dark'
                   className='rounded-0 w-100 mb-3 fw-bold'
-                  as={Link}
-                  to='/checkout'
                   onClick={() => {
                     handleClose()
                     {
-                      !currentUser &&
-                        toast.error('Sign in to continue to checkout')
+                      currentUser
+                        ? navigate('/checkout')
+                        : toast.error('Please Sign in to continue')
                     }
                   }}
                 >
