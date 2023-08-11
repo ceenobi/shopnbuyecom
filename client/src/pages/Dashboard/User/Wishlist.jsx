@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useStore } from '../../../hooks/store'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate,useLocation } from 'react-router-dom'
 import { Trash2 } from 'react-feather'
 import useDataFetching from '../../../hooks/fetchData'
 import { dislikeProduct, getUserLikedProducts } from '../../../config/api'
@@ -18,10 +18,14 @@ export default function Wishlist() {
     currentUser?.access_token
   )
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     document.title = `${currentUser?.user?.username} wishlist `
-  }, [currentUser?.user?.username])
+    if (location.pathname === `account/${currentUser?.user?.username}`) {
+      navigate(`/account/${currentUser?.user?.username}/wishlist`)
+    }
+  }, [currentUser?.user?.username, location.pathname, navigate])
 
   const addToBag = (item) => {
     increaseBagQuantity(item)
