@@ -148,7 +148,6 @@ export default function ProductDetail() {
                   </span>
 
                   <HandThumbUpIcon
-                    type='button'
                     color={
                       state?.product?.likes?.includes(currentUser?.user?._id)
                         ? 'red'
@@ -159,7 +158,7 @@ export default function ProductDetail() {
                         ? 'You like this product'
                         : 'Like this product'
                     }
-                    style={{ height: '24px', width: '24px' }}
+                    style={{ height: '24px', width: '24px', cursor: 'pointer' }}
                     onClick={
                       state?.product?.likes?.includes(currentUser?.user?._id)
                         ? handleDislike

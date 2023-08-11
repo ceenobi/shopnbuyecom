@@ -31,7 +31,7 @@ export default function ManageProduct() {
     error && <span className='mt-5 fs-5'>{error.message}</span>
   }
   return (
-    <div style={{ height: '700px', overflow: 'scroll' }}>
+    <div>
       <h1 className='fs-5 fw-bold mb-4'>See all products</h1>
       {loading ? (
         <Loader />

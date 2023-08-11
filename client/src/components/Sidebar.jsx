@@ -17,7 +17,7 @@ export default function Sidebar() {
 
   return (
     <div className='d-lg-none me-2'>
-      <Menu type='button' size='30px' onClick={handleShow} />
+      <Menu size='30px' onClick={handleShow} style={{cursor:'pointer'}}/>
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>

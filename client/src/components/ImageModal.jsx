@@ -30,7 +30,11 @@ export default function ImageModal({
       >
         <Modal.Body>
           <div className='text-end w-100'>
-            <X type='button' size='30px' onClick={handleClose} />
+            <X
+              style={{ cursor: 'pointer' }}
+              size='30px'
+              onClick={handleClose}
+            />
           </div>
           <div className='position-relative w-100 h-100'>
             <Image
@@ -46,13 +50,13 @@ export default function ImageModal({
             <ArrowLeftCircle
               className='position-absolute top-50 start-0 translate-middle text-black z-2'
               size='1.8rem'
-              type='button'
+              style={{ cursor: 'pointer' }}
               onClick={prevSlide}
             />
             <ArrowRightCircle
               className='position-absolute top-50 start-100 translate-middle text-black z-2'
               size='1.8rem'
-              type='button'
+              style={{ cursor: 'pointer' }}
               onClick={nextSlide}
             />
           </div>

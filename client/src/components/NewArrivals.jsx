@@ -34,15 +34,15 @@ export default function NewArrivals({ data }) {
               ))}
             </div>
             <ArrowLeftCircle
-              className='position-absolute top-50 start-0 translate-middle text-black z-2'
+              className='d-none d-lg-block position-absolute top-50 start-0 translate-middle text-black z-2'
               size='1.8rem'
-              type='button'
+              style={{ cursor: 'pointer' }}
               onClick={() => scroll('left')}
             />
             <ArrowRightCircle
-              className='position-absolute top-50 start-100 translate-middle text-black z-2'
+              className='d-none d-lg-block position-absolute top-50 start-100 translate-middle text-black z-2'
               size='1.8rem'
-              type='button'
+              style={{ cursor: 'pointer' }}
               onClick={() => scroll('right')}
             />
           </div>

@@ -23,7 +23,7 @@ export default function Account() {
       <HeaderLayout heading={`Welcome, ${currentUser?.user?.username}`} />
 
       <Row
-        className='mx-auto position-relative border border-3 rounded-3'
+        className='mx-auto position-relative border border-3 rounded-3 shadow'
         style={{ minHeight: '700px' }}
       >
         <Col

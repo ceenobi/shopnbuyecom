@@ -15,7 +15,7 @@ export default function Preorder({ data }) {
           VIEW ALL
         </a>
       </div>
-      <div className='d-flex overflow-x-scroll overflow-y-hidden gap-4 scrollbody'>
+      <div className='d-flex overflow-x-scroll overflow-y-hidden gap-4 scrollbody px-3'>
         {filterByPreorder.slice(0, 4).map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}

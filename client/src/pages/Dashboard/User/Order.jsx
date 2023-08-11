@@ -21,7 +21,7 @@ export default function Order() {
   return (
     <>
       {location.pathname === `/account/${username}/orders` ? (
-        <div style={{ height: '700px', overflow: 'scroll' }}>
+        <div>
           <h1 className='fs-5 fw-bold mb-4'>Your orders</h1>
           {loading ? (
             <Loader />

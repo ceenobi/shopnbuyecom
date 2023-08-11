@@ -28,18 +28,23 @@ export default function FeaturedProduct({ data }) {
     <>
       <div className='d-flex justify-content-between align-items-center gap-4 mb-2'>
         <div className='w-50  h-0 border border-black' />
-        <h1 className='text-center fs-3 text-uppercase'>Featured Products</h1>
+        <h1 className='text-center fs-3 text-uppercase fw-bold'>
+          Featured Products
+        </h1>
         <div className='w-50  h-0 border border-black' />
       </div>
       <Row className='justify-content-between align-items-center'>
         <Col md={6} lg={5}>
-          <div className='mx-auto w-100 h-100'>
+          <div className='mx-auto w-100 h-100 px-3'>
             {data.map((product, i) => (
               <div key={i}>
                 {i === current && (
                   <>
                     {product?.images?.map((image, i) => (
-                      <div key={i} className='position-relative w-100 h-100'>
+                      <div
+                        key={i}
+                        className='position-relative w-100 h-100 px-3'
+                      >
                         {i === current && (
                           <>
                             <Link
@@ -59,13 +64,13 @@ export default function FeaturedProduct({ data }) {
                             <ArrowLeftCircle
                               className='position-absolute top-50 start-0 translate-middle text-black z-2'
                               size='1.8rem'
-                              type='button'
+                              style={{ cursor: 'pointer' }}
                               onClick={prevSlide}
                             />
                             <ArrowRightCircle
                               className='position-absolute top-50 start-100 translate-middle text-black z-2'
                               size='1.8rem'
-                              type='button'
+                              style={{ cursor: 'pointer' }}
                               onClick={nextSlide}
                             />
                           </>
@@ -90,7 +95,10 @@ export default function FeaturedProduct({ data }) {
                     {product.title}
                   </Link>
                   <h1 className='fs-4'>{formatCurrency(product.price)}</h1>
-                  <Button variant='dark rounded-0' onClick={() => addToBag(product)}>
+                  <Button
+                    variant='dark rounded-0'
+                    onClick={() => addToBag(product)}
+                  >
                     ADD TO BAG
                   </Button>
                 </>

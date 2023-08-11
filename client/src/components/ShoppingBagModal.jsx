@@ -27,7 +27,7 @@ export default function ShoppingBagModal() {
         className='position-relative'
         onClick={location.pathname === '/bag' ? null : handleShow}
       >
-        <ShoppingBag color='black' type='button' />
+        <ShoppingBag color='black' style={{ cursor: 'pointer' }} />
         <h6 className='position-absolute top-0 start-100 translate-middle fs-6'>
           <Badge pill bg='dark'>
             {bagQuantity > 0 ? bagQuantity : 0}
