@@ -68,7 +68,11 @@ export default function Account() {
       <Modal show={show} onHide={handleClose} backdrop='static' centered>
         <Modal.Body>
           <div className='text-end w-100'>
-            <X type='button' size='30px' onClick={handleClose} />
+            <X
+              style={{ cursor: 'pointer' }}
+              size='30px'
+              onClick={handleClose}
+            />
           </div>
           <div>
             <h1 className='text-center'>
@@ -116,15 +120,14 @@ export default function Account() {
                 {passwordShown ? (
                   <EyeOff
                     className='position-absolute end-0 translate-middle'
-                    type='button'
-                    style={{ top: isSignup ? '50%' : '25%' }}
+                    style={{ top: isSignup ? '50%' : '25%', cursor: 'pointer' }}
                     onClick={togglePassword}
                   />
                 ) : (
                   <Eye
                     className='position-absolute end-0 translate-middle'
                     type='button'
-                    style={{ top: isSignup ? '50%' : '25%' }}
+                    style={{ top: isSignup ? '50%' : '25%', cursor: 'pointer' }}
                     onClick={togglePassword}
                   />
                 )}
