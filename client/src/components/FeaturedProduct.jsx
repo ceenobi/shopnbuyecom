@@ -37,7 +37,7 @@ export default function FeaturedProduct({ data }) {
         <Col md={6} lg={5}>
           <div className='mx-auto w-100 h-100 px-3'>
             {data.map((product, i) => (
-              <div key={i}>
+              <div key={product._id}>
                 {i === current && (
                   <>
                     {product?.images?.map((image, i) => (
@@ -52,7 +52,7 @@ export default function FeaturedProduct({ data }) {
                             >
                               <Image
                                 src={image}
-                                alt='imgpic'
+                                alt={product.title}
                                 style={{
                                   width: '100%',
                                   height: '400px',
@@ -85,7 +85,7 @@ export default function FeaturedProduct({ data }) {
         </Col>
         <Col md={5} className='text-center text-md-start '>
           {data.map((product, i) => (
-            <div key={i}>
+            <div key={product._id}>
               {i === current && (
                 <>
                   <Link

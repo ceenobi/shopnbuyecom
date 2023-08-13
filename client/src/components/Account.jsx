@@ -12,7 +12,6 @@ export default function Account() {
   const [show, setShow] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [passwordShown, setPasswordShown] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
   const {
@@ -20,15 +19,11 @@ export default function Account() {
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const { setCurrentUser } = useStore()
+  const { setCurrentUser, togglePassword, passwordShown } = useStore()
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   const from = location.state?.from || '/'
-
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown)
-  }
 
   const switchMode = () => {
     setIsSignup((prev) => !prev)
@@ -82,7 +77,7 @@ export default function Account() {
               className='d-flex flex-column align-items-center w-100'
               onSubmit={handleSubmit(onSubmitHandler)}
             >
-              <div className='mb-3 inputRegBox'>
+              <div className='mb-2 inputRegBox'>
                 <input
                   type='text'
                   placeholder='Username'
@@ -96,7 +91,7 @@ export default function Account() {
                 )}
               </div>
               {isSignup && (
-                <div className='mb-3 inputRegBox'>
+                <div className='mb-2 inputRegBox'>
                   <input
                     type='email'
                     placeholder='Email'
@@ -109,40 +104,40 @@ export default function Account() {
                   )}
                 </div>
               )}
-              <div className='inputRegBox position-relative'>
+              <div className='inputRegBox position-relative mb-2'>
                 <input
                   type={passwordShown ? 'text' : 'password'}
                   placeholder='Password'
                   id='password'
-                  className='w-100 inputReg mb-1'
+                  className='w-100 inputReg mb-0'
                   {...register(`password`, registerOptions.password)}
                 />
                 {passwordShown ? (
                   <EyeOff
                     className='position-absolute end-0 translate-middle'
-                    style={{ top: isSignup ? '50%' : '25%', cursor: 'pointer' }}
+                    style={{ top: '50%', cursor: 'pointer' }}
                     onClick={togglePassword}
                   />
                 ) : (
                   <Eye
                     className='position-absolute end-0 translate-middle'
-                    style={{ top: isSignup ? '50%' : '25%', cursor: 'pointer' }}
+                    style={{ top: '50%', cursor: 'pointer' }}
                     onClick={togglePassword}
                   />
                 )}
-                {errors?.password?.message && (
-                  <p className='fs-6 text-danger mb-1'>
-                    {errors.password.message}
-                  </p>
-                )}
-                {!isSignup && (
-                  <Link to='recover-password' onClick={handleClose}>
-                    <p className='fs-6 text-black text-decoration-underline mb-4'>
-                      Forgot your password
-                    </p>
-                  </Link>
-                )}
               </div>
+              {errors?.password?.message && (
+                <p className='fs-6 text-danger mb-1 inputRegBox'>
+                  {errors.password.message}
+                </p>
+              )}
+              {!isSignup && (
+                <Link to='recover-password' onClick={handleClose}>
+                  <p className='fs-6 text-black text-decoration-underline inputRegBox'>
+                    Forgot your password
+                  </p>
+                </Link>
+              )}
 
               <Button
                 variant='dark'

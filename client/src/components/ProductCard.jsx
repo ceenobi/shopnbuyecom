@@ -27,7 +27,7 @@ export default function ProductCard({ product }) {
       </Link>
       <Button
         variant='dark'
-        className='w-100 rounded-0 d-none d-xl-block focus-content'
+        className='w-100 rounded-0 d-none d-lg-block focus-content'
         onClick={() => addToBag(product)}
       >
         Quick Add

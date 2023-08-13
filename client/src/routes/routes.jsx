@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import {
   Account,
   AddProduct,
@@ -23,7 +23,6 @@ import ProtectedRoutes from './ProtectedRoutes'
 import { Error } from '../components'
 
 export default function Routes() {
-  const username = sessionStorage.getItem('username')
   const router = createBrowserRouter([
     {
       path: '/',
@@ -70,7 +69,7 @@ export default function Routes() {
         },
         {
           path: 'reset-password',
-          element: username ? <Reset /> : <Navigate to={'/'} replace />,
+          element: <Reset />,
         },
         {
           path: 'account',

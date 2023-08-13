@@ -19,6 +19,16 @@ const registerOptions = {
         'Password must have special character, number and uppercase',
     },
   },
+  confirmPassword: {
+    required: 'confirm Password Required!',
+    validate: {
+      minLength: (v) =>
+        v.length >= 6 || 'Password should not be less than 6 characters',
+      matchPattern: (v) =>
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(v) ||
+        'Password must have special character, number and uppercase',
+    },
+  },
   username: {
     required: 'Username is required',
     validate: {
@@ -29,7 +39,6 @@ const registerOptions = {
         'Username must contain only letters, numbers and _',
     },
   },
- 
 }
 
 export default registerOptions

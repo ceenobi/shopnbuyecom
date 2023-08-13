@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useForm } from 'react-hook-form'
+import { Eye, EyeOff } from 'react-feather'
 import { Button, Spinner } from 'react-bootstrap'
 import { updateUserProfile, uploadToCloudinary } from '../config/api'
 import { useStore } from '../hooks/store'
@@ -10,7 +11,8 @@ export default function UpdateProfile() {
   const [imgPic, setImgPic] = useState('')
   const [imgLink, setImgLink] = useState('')
   const [loading, setLoading] = useState(false)
-  const { currentUser, setCurrentUser } = useStore()
+  const { currentUser, setCurrentUser, togglePassword, passwordShown } =
+    useStore()
   const navigate = useNavigate()
   const {
     register,
@@ -25,7 +27,7 @@ export default function UpdateProfile() {
       setImgLink(updatedProfileImg)
     } catch (error) {
       console.error(error)
-      toast.error('error uploading image')
+      toast.error('Error uploading image')
     }
   }, [imgPic])
 
@@ -36,29 +38,33 @@ export default function UpdateProfile() {
   }, [handleUploadPic, imgPic])
 
   const onSubmitHandler = async (data) => {
-    setLoading(true)
-    const updatedProfile = {
-      _id: currentUser?.user?._id,
-      username: data.username,
-      email: data.email,
-      password: data.password,
-      profileImg: imgLink,
-    }
-    try {
-      const res = await updateUserProfile(
-        updatedProfile,
-        currentUser?.access_token
-      )
-      if (res.status === 201) {
-        setCurrentUser(res.data)
-        toast.success('User profile updated successfully')
-        navigate(0)
+    if (data.username === '' && data.password === '' && data.email === '') {
+      return toast.error('Please fill in a field to update profile')
+    } else {
+      setLoading(true)
+      const updatedProfile = {
+        _id: currentUser?.user?._id,
+        username: data.username,
+        email: data.email,
+        password: data.password,
+        profileImg: imgLink,
       }
-    } catch (error) {
-      console.error(error)
-      toast.error(error.message)
-    } finally {
-      setLoading(false)
+      try {
+        const res = await updateUserProfile(
+          updatedProfile,
+          currentUser?.access_token
+        )
+        if (res.status === 201) {
+          setCurrentUser(res.data)
+          toast.success('Your profile updated successfully')
+          navigate(0)
+        }
+      } catch (error) {
+        console.error(error)
+        toast.error(error.message)
+      } finally {
+        setLoading(false)
+      }
     }
   }
 
@@ -82,7 +88,7 @@ export default function UpdateProfile() {
             {...register('username', {
               minLength: {
                 value: 6,
-                message: 'Username should be at-least 4 characters.',
+                message: 'Username should be at least 6 characters.',
               },
             })}
           />
@@ -108,32 +114,45 @@ export default function UpdateProfile() {
             <p className='text-danger fs-6'>{errors.email.message}</p>
           )}
         </div>
-        <div className='mb-3 inputRegBox'>
+        <div className='mb-1 inputRegBox position-relative'>
           <input
-            type='password'
+            type={passwordShown ? 'text' : 'password'}
             placeholder='Password'
             id='password'
             name='password'
             className='w-100 inputReg mb-0'
-            {...register(`password`, {
+            {...register('password', {
+              pattern: {
+                value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/,
+                message:
+                  'Password must have special character, number and uppercase.',
+              },
               minLength: {
                 value: 6,
-                message: 'Password should be at-least 6 characters.',
-              },
-              validate: {
-                matchPattern: (v) =>
-                  /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/.test(
-                    v
-                  ) ||
-                  'Password must have special character, number and uppercase',
+                message: 'Password should be at least 6 characters',
               },
             })}
           />
-          {errors?.password && (
-            <p className='text-danger fs-6'>{errors.password.message}</p>
+          {passwordShown ? (
+            <EyeOff
+              className='position-absolute end-0 translate-middle'
+              style={{ top: '50%', cursor: 'pointer' }}
+              onClick={togglePassword}
+            />
+          ) : (
+            <Eye
+              className='position-absolute end-0 translate-middle'
+              style={{ top: '50%', cursor: 'pointer' }}
+              onClick={togglePassword}
+            />
           )}
         </div>
-        <div className='mb-3 inputRegBox'>
+        {errors?.password && (
+          <p className='text-danger fs-6 inputRegBox '>
+            {errors.password.message}
+          </p>
+        )}
+        <div className='my-3 inputRegBox'>
           <label htmlFor='profilepic'>Upload profile image</label>
           <input
             type='file'

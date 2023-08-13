@@ -24,6 +24,7 @@ export const StateContext = ({ children }) => {
   const [shippingDetails, setShippingDetails] = useState(shippingData)
   const [paymentMethod, setPaymentMethod] = useState(paymentData)
   const [currentUser, setCurrentUser] = useState(initialUser)
+  const [passwordShown, setPasswordShown] = useState(false)
 
   useEffect(() => {
     const getUser = JSON.parse(localStorage.getItem('userinfo'))
@@ -148,6 +149,10 @@ export const StateContext = ({ children }) => {
     toast.success('Logged out successfully')
   }
 
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown)
+  }
+
   const links = [
     {
       name: 'Orders',
@@ -206,6 +211,8 @@ export const StateContext = ({ children }) => {
         links,
         adminLinks,
         LogOut,
+        passwordShown,
+        togglePassword,
       }}
     >
       {children}
