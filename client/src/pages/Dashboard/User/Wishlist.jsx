@@ -29,6 +29,7 @@ export default function Wishlist() {
 
   const addToBag = (item) => {
     increaseBagQuantity(item)
+    toast.success(`${item.title} added to bag`)
     navigate('/bag')
   }
 

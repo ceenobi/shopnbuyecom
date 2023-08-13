@@ -38,16 +38,13 @@ export default function ShoppingBagModal() {
       <Offcanvas show={show} onHide={handleClose} placement='end'>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <h1 className='fs-2 fw-bold text-black'>BAG</h1>
+            <h1 className='fs-3 fw-bold text-black'>BAG</h1>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <div className='position-relative'>
             {bagItems.length > 0 ? (
-              <div
-                style={{ height: '70vh', overflow: 'scroll' }}
-                className='scrollbody'
-              >
+              <div>
                 {bagItems.map((item) => (
                   <div key={item._id}>
                     <div className='d-flex align-items-center gap-4 mb-4 w-100'>
@@ -97,12 +94,7 @@ export default function ShoppingBagModal() {
                 ))}
               </div>
             ) : (
-              <h1
-                className='text-center fs-4 mt-4'
-                style={{ height: '65vh', overflow: 'scroll' }}
-              >
-                Your bag is empty 😭{' '}
-              </h1>
+              <h1 className='text-center fs-4 mt-4'>Your bag is empty 😭 </h1>
             )}
             <div className=' w-100'>
               <h1>

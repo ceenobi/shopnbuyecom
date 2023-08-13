@@ -37,6 +37,7 @@ export default function ProductDetail() {
 
   const addToBag = (item) => {
     increaseBagQuantity(item)
+    toast.success(`${item.title} added to bag`)
     setShow(true)
   }
 
@@ -75,6 +76,7 @@ export default function ProductDetail() {
         type: 'LIKE_PRODUCT_SUCCESS',
         payload: currentUser?.user?._id,
       })
+      toast.success(`You liked this`)
     } catch (error) {
       toast.error('Unable to like, pls sign in')
     }
@@ -91,8 +93,9 @@ export default function ProductDetail() {
         type: 'DISLIKE_PRODUCT_SUCCESS',
         payload: currentUser?.user?._id,
       })
+      toast.success(`You disliked this`)
     } catch (error) {
-      toast.error("Something went wrong")
+      toast.error('Something went wrong')
     }
   }
 

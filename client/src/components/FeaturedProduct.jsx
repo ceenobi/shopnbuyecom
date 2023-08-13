@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { ArrowLeftCircle, ArrowRightCircle } from 'react-feather'
 import { formatCurrency } from '../utils/formatCurrency'
 import { useStore } from '../hooks/store'
+import { toast } from 'react-hot-toast'
 
 export default function FeaturedProduct({ data }) {
   const [current, setCurrent] = useState(0)
@@ -21,6 +22,7 @@ export default function FeaturedProduct({ data }) {
 
   const addToBag = (item) => {
     increaseBagQuantity(item)
+    toast.success(`${item.title} added to bag`)
     setShow(true)
   }
 

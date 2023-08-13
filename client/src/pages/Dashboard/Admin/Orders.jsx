@@ -82,9 +82,9 @@ export default function Orders() {
                     <td>{order.paymentMethod}</td>
                     <td>{order.isPaid ? 'Paid' : 'Not Paid'}</td>
                     <td>
-                      {order.status === 0 || order.status === 1
-                        ? 'Waiting'
-                        : 'Fufilled'}
+                      {order.status === 0 && 'Waiting'}
+                      {order.status === 1 && 'Pocessing'}
+                      {order.status === 2 && 'Fulfilled'}
                     </td>
                     <td>{order.isDelivered ? 'DELIVERED' : 'Pending'}</td>
                     <td>

@@ -2,6 +2,7 @@ import { Image, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { formatCurrency } from '../utils/formatCurrency'
 import { useStore } from '../hooks/store'
+import { toast } from 'react-hot-toast'
 
 export default function ProductCard({ product }) {
   const { increaseBagQuantity, setShow } = useStore()
@@ -9,6 +10,7 @@ export default function ProductCard({ product }) {
 
   const addToBag = (item) => {
     increaseBagQuantity(item)
+    toast.success(`${item.title} added to bag`)
     setShow(true)
   }
 
