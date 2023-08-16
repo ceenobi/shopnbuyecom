@@ -74,7 +74,7 @@ export default function Categories() {
       {data?.length && (
         <Row className='mt-4 gy-3'>
           {filteredData?.sort(sortMethods[sortState]?.method).map((product) => (
-            <Col key={product._id} xs={6} md={4}>
+            <Col key={product._id} xs={6} md={4} lg={3}>
               <ProductCard product={product} />
             </Col>
           ))}
