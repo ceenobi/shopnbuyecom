@@ -97,7 +97,7 @@ export const updateUser = async (req, res) => {
       res.status(404)
       throw new Error('User profile not updated')
     }
-  } catch (error) {
+  } catch (err) {
     res.status(500).json(err)
   }
 }
