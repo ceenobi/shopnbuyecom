@@ -114,7 +114,7 @@ export const getUserLikedProduct = async (req, res) => {
 
 export const deleteProduct = async (req, res) => {
   try {
-    await Product.findByIdAndDelete(req.params.id)
+    await Product.findByIdAndRemove(req.params.id)
     res.status(200).json('Product deleted successfully')
   } catch (err) {
     res.status(500).json(err)

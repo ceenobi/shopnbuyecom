@@ -17,7 +17,6 @@ export default function Collections() {
 
   return (
     <>
- 
       {location.pathname === '/collections' ? (
         <PageLayout>
           <Breadcrumbs />

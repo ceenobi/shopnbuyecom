@@ -55,14 +55,14 @@ export default function ShoppingBagModal() {
                         <Image
                           src={item?.images[0]}
                           alt={item.title}
-                          style={{ width: '100px', height: 'auto' }}
+                          style={{ width: '120px', height: 'auto' }}
                         />
                       </Link>
                       <div className='d-flex flex-column flex-grow-1 justify-content-between'>
                         <p className='fs-6 fw-bold mb-0'>{item.title}</p>
                         <span className='fs-6'>{item.brand}</span>
                         <div className='d-flex justify-content-between align-items-center qtyBox'>
-                          <div className='d-flex gap-2 align-items-center border border-black bg-white rounded-1 p-2'>
+                          <div className='d-flex gap-2 align-items-center border border-black bg-white p-2'>
                             <Minus
                               style={{ cursor: 'pointer' }}
                               size='16px'
@@ -92,44 +92,46 @@ export default function ShoppingBagModal() {
                     <hr />
                   </div>
                 ))}
+                <div className=' w-100'>
+                  <h1>
+                    <span className='fs-4'>Subtotal: </span>{' '}
+                    <span className='fw-bold'>
+                      {formatCurrency(priceTotal)}
+                    </span>
+                  </h1>
+                  <span className='fs-6 mb-4'>
+                    Taxes and shipping calculated at checkout
+                  </span>
+                  <div>
+                    <Button
+                      variant='dark'
+                      className='rounded-0 w-100 mb-3 fw-bold'
+                      onClick={() => {
+                        handleClose()
+                        {
+                          currentUser
+                            ? navigate('/checkout')
+                            : toast.error('Please Sign in to continue')
+                        }
+                      }}
+                    >
+                      Checkout
+                    </Button>
+                    <Button
+                      variant='outline-dark'
+                      className='rounded-0 w-100 fw-bold'
+                      as={Link}
+                      to={'/bag'}
+                      onClick={handleClose}
+                    >
+                      View Bag
+                    </Button>
+                  </div>
+                </div>
               </div>
             ) : (
               <h1 className='text-center fs-4 mt-4'>Your bag is empty 😭 </h1>
             )}
-            <div className=' w-100'>
-              <h1>
-                <span className='fs-4'>Subtotal: </span>{' '}
-                <span className='fw-bold'>{formatCurrency(priceTotal)}</span>
-              </h1>
-              <span className='fs-6 mb-4'>
-                Taxes and shipping calculated at checkout
-              </span>
-              <div>
-                <Button
-                  variant='dark'
-                  className='rounded-0 w-100 mb-3 fw-bold'
-                  onClick={() => {
-                    handleClose()
-                    {
-                      currentUser
-                        ? navigate('/checkout')
-                        : toast.error('Please Sign in to continue')
-                    }
-                  }}
-                >
-                  Checkout
-                </Button>
-                <Button
-                  variant='outline-dark'
-                  className='rounded-0 w-100 fw-bold'
-                  as={Link}
-                  to={'/bag'}
-                  onClick={handleClose}
-                >
-                  View Bag
-                </Button>
-              </div>
-            </div>
           </div>
         </Offcanvas.Body>
       </Offcanvas>

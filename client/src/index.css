@@ -30,6 +30,7 @@ p {
 a {
   font-size: clamp(1.3rem, 1vw, 1.6rem) !important;
 }
+
 .searchBox {
   width: 100%;
   height: 35px;

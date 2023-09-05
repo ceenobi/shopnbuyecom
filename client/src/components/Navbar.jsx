@@ -62,7 +62,7 @@ export default function Navbar() {
                   ))}
                 </Dropdown.Menu>
               </Dropdown>
-              <div className='d-flex align-items-center ms-auto'>
+              <div className='d-flex align-items-center ms-auto gap-2'>
                 <Search
                   style={{ cursor: 'pointer' }}
                   onClick={() => setShowSearch(!showSearch)}
