@@ -60,7 +60,7 @@ export default function ShoppingBagModal() {
                       </Link>
                       <div className='d-flex flex-column flex-grow-1 justify-content-between'>
                         <p className='fs-6 fw-bold mb-0'>{item.title}</p>
-                        <span className='fs-6'>{item.brand}</span>
+                        <span className='fs-6'>{item.category}</span>
                         <div className='d-flex justify-content-between align-items-center qtyBox'>
                           <div className='d-flex gap-2 align-items-center border border-black bg-white p-2'>
                             <Minus

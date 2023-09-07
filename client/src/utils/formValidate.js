@@ -39,6 +39,18 @@ const registerOptions = {
         'Username must contain only letters, numbers and _',
     },
   },
+  state: {
+    required: 'State is required',
+  },
+  phone: {
+    required: 'Phone is required',
+  },
+  shippingAddress: {
+    required: 'Address is required',
+  },
+  fullname: {
+    required: 'Fullname is required',
+  },
 }
 
 export default registerOptions

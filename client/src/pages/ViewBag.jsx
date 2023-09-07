@@ -61,7 +61,7 @@ export default function ViewBag() {
                     </Link>
                     <div>
                       <p className='fs-6 fw-bold mb-0'>{item.title}</p>
-                      <span className='fs-6'>{item.brand}</span>
+                      <span className='fs-6'>{item.category}</span>
                     </div>
                   </div>
                 </Col>
