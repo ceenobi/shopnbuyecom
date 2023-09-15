@@ -1,4 +1,5 @@
 import axios from 'axios'
+import jwt_decode from 'jwt-decode'
 import {
   instance,
   CLOUDINARY_UPLOAD_PRESET,
@@ -162,6 +163,23 @@ export const resetPassword = async ({ username, password }) => {
   } catch (error) {
     return { error: error }
   }
+}
+
+export const decodeUserId = async (id) => {
+  try {
+    const res = await instance.get(`/api/auth/decodeId/${id}`)
+    return res
+  } catch (error) {
+    return { error: 'Cannot find user by the id' }
+  }
+}
+
+export async function verifyToken() {
+  const token = localStorage.getItem('access_token')
+  if (!token) return Promise.reject('Cannot find Token')
+  let decode = jwt_decode(token)
+
+  return decode
 }
 
 //orders

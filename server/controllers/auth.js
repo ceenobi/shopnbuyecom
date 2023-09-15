@@ -68,15 +68,20 @@ export const getUser = async (req, res, next) => {
 }
 
 export const updateUser = async (req, res) => {
+  const { username, email, password, profileImg } = req.body
   const userId = await User.findById(req.user.id)
   try {
     if (userId) {
-      userId.username = req.body.username || userId.username
-      userId.email = req.body.email || userId.email
-      userId.profileImg = req.body.profileImg || userId.profileImg
-      const hashedPassword = await bcrypt.hash(req.body.password, 10)
-      if (hashedPassword) {
-        userId.password = hashedPassword
+      userId.username = username || userId.username
+      userId.email = email || userId.email
+      userId.profileImg = profileImg || userId.profileImg
+      if (password) {
+        const hashedPassword = await bcrypt.hash(password, 10)
+        if (hashedPassword) {
+          userId.password = hashedPassword
+        }
+      } else {
+        userId.password = userId.password
       }
       const updatedUser = await userId.save()
       const user = {
@@ -87,6 +92,7 @@ export const updateUser = async (req, res) => {
         isAdmin: updatedUser.isAdmin,
         createdAt: updatedUser.createdAt,
       }
+
       const access_token = generateToken(updatedUser._id)
       res.status(201).json({
         access_token,

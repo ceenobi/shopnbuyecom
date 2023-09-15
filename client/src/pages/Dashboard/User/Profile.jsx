@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import useDataFetching from '../../../hooks/fetchData'
 import { useStore } from '../../../hooks/store'
 import { getUserProfile } from '../../../config/api'
@@ -10,6 +10,8 @@ import { UpdateProfile } from '../../../components'
 
 export default function Profile() {
   const { currentUser } = useStore()
+  const location = useLocation()
+  const navigate = useNavigate()
   const { username } = useParams()
   const { error, data, loading } = useDataFetching(
     getUserProfile,
@@ -19,7 +21,10 @@ export default function Profile() {
 
   useEffect(() => {
     document.title = `${data?.username} profile`
-  }, [data?.username])
+    if (location.pathname === `/account/user-profile`) {
+      navigate(`/account/user-profile/${currentUser?.user?.username}`)
+    }
+  }, [currentUser?.user?.username, data?.username, location.pathname, navigate])
 
   {
     error && <p className='mt-5 fs-5'>{error.message}</p>
@@ -29,14 +34,14 @@ export default function Profile() {
     <>
       {loading && <Loader />}
       <Row className='align-items-center justify-content-around gy-2'>
-        <Col md={5} lg={5} className='text-center text-lg-start mb-4'>
+        <Col md={12} className='text-center mb-4'>
           <Image
             src={data?.profileImg}
-            className='rounded-circle mb-4 object-fit-cover'
+            className='rounded-circle mb-4 object-fit-cover shadow'
             style={{ width: '100px', height: '100px' }}
           />
           <h1 className='fs-5 fw-bold'>{data?.username}</h1>
-          <p className='fs-5 mb-1'>{data?.email}</p>
+          <p className='fs-5 mb-1'>Email: {data?.email}</p>
           <p className='fs-5'>
             <span>Date registered: </span>
             {format(data?.createdAt)}

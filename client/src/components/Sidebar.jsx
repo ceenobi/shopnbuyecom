@@ -17,7 +17,7 @@ export default function Sidebar() {
 
   return (
     <div className='d-lg-none me-2'>
-      <Menu size='30px' onClick={handleShow} style={{cursor:'pointer'}}/>
+      <Menu size='30px' onClick={handleShow} style={{ cursor: 'pointer' }} />
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
@@ -28,7 +28,6 @@ export default function Sidebar() {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <div>
-            <hr />
             <h1 className='mb-2 fs-3 fw-bold'>Categories</h1>
             {error && <p>{error.message}</p>}
             {loading ? (
@@ -89,7 +88,7 @@ export default function Sidebar() {
                   ))}
                 </>
               )}
-              <hr/>
+              <hr />
               <div className='d-flex align-items-center' onClick={LogOut}>
                 <Power className='me-2 ' />
                 <span className='fw-medium fs-5'>Logout</span>

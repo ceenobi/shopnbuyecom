@@ -70,11 +70,7 @@ export default function Checkout() {
       if (res.status === 201) {
         toast.success('Order successfull')
         setBagItems([])
-        navigate(
-          `/account/${
-            currentUser?.user?.isAdmin === true ? 'admin' : 'customer'
-          }/orders`
-        )
+         navigate(`/account/${currentUser?.user?.username}/orders`)
       }
     } catch (error) {
       console.error(error)

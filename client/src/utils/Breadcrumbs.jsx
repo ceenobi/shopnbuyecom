@@ -18,7 +18,11 @@ const routes = [
     path: '/:slug',
     breadcrumb: DynamicProductBreadcrumb,
   },
-  { path: '/search', breadcrumb: 'Search' },
+  {
+    path: '/:username',
+    breadcrumb: DynamicProductBreadcrumb,
+  },
+  // { path: '/search', breadcrumb: 'Search' },
   // { path: '/bag', breadcrumb: 'Bag' },
   // { path: '/checkout', breadcrumb: 'Checkout' },
   // { path: '/recover-password', breadcrumb: 'Recover' },

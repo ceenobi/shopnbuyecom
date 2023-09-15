@@ -38,33 +38,31 @@ export default function UpdateProfile() {
   }, [handleUploadPic, imgPic])
 
   const onSubmitHandler = async (data) => {
-    if (data.username === '' && data.password === '' && data.email === '') {
-      return toast.error('Please fill in a field to update profile')
-    } else {
-      setLoading(true)
-      const updatedProfile = {
-        _id: currentUser?.user?._id,
-        username: data.username,
-        email: data.email,
-        password: data.password,
-        profileImg: imgLink,
+    setLoading(true)
+    const updatedProfile = {
+      _id: currentUser?.user?._id,
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      profileImg: imgLink,
+    }
+    try {
+      const res = await updateUserProfile(
+        updatedProfile,
+        currentUser?.access_token
+      )
+      if (res.status === 201) {
+        toast.success('Your profile updated successfully')
+        setCurrentUser(res.data)
+        navigate(`/account/user-profile/${res.data?.user?.username}`)
+      } else {
+        toast.error('Error updating your profile')
       }
-      try {
-        const res = await updateUserProfile(
-          updatedProfile,
-          currentUser?.access_token
-        )
-        if (res.status === 201) {
-          setCurrentUser(res.data)
-          toast.success('Your profile updated successfully')
-          navigate(0)
-        }
-      } catch (error) {
-        console.error(error)
-        toast.error(error.message)
-      } finally {
-        setLoading(false)
-      }
+    } catch (error) {
+      console.error(error)
+      toast.error(error.message)
+    } finally {
+      setLoading(false)
     }
   }
 

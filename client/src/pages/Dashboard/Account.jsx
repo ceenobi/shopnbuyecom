@@ -21,7 +21,6 @@ export default function Account() {
     <PageLayout>
       <Breadcrumbs />
       <HeaderLayout heading={`Welcome, ${currentUser?.user?.username}`} />
-
       <Row
         className='mx-auto position-relative border border-3 rounded-3 shadow'
         style={{ minHeight: '700px' }}
@@ -31,21 +30,24 @@ export default function Account() {
           className='bg-white p-3 d-none d-lg-block border position-absolute top-0 h-100'
         >
           {links.map((item, i) => (
-            <span key={i} className='mb-3 d-flex align-items-center gap-3'>
+            <span key={i} className='mb-3 d-flex align-items-center gap-2'>
               <div>{item.icon}</div>
               <NavLink
                 to={`${item.path}`}
                 className={({ isActive }) =>
-                  isActive ? 'text-success fw-bold' : 'text-black fw-medium'
+                  isActive
+                    ? 'text-success fw-bold mt-1'
+                    : 'text-black fw-medium mt-1'
                 }
               >
                 {item.name}
               </NavLink>
             </span>
           ))}
-          <hr />
+
           {currentUser?.user?.isAdmin === true && (
             <>
+              <hr />
               {adminLinks.map((item, i) => (
                 <div key={i} className='mb-3 d-flex align-items-center gap-3'>
                   <div>{item.icon}</div>

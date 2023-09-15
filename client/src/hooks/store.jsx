@@ -1,6 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useState, useEffect } from 'react'
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react'
 import {
   List,
   User,
@@ -10,6 +16,7 @@ import {
   Settings,
 } from 'react-feather'
 import { toast } from 'react-hot-toast'
+import jwt_decode from 'jwt-decode'
 
 const Context = createContext()
 
@@ -25,6 +32,22 @@ export const StateContext = ({ children }) => {
   const [paymentMethod, setPaymentMethod] = useState(paymentData)
   const [currentUser, setCurrentUser] = useState(initialUser)
   const [passwordShown, setPasswordShown] = useState(false)
+
+  const checkJwtExpiry = useCallback(async () => {
+    const token = JSON.parse(localStorage.getItem('userinfo'))
+    if (token) {
+      const { exp } = jwt_decode(token.access_token)
+      if (exp * 1000 < Date.now()) {
+        localStorage.removeItem('userinfo')
+        location.replace('/')
+        toast.error('Token expired, sign in to get access')
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    checkJwtExpiry()
+  }, [checkJwtExpiry])
 
   useEffect(() => {
     const getUser = JSON.parse(localStorage.getItem('userinfo'))

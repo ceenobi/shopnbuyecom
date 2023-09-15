@@ -1,6 +1,6 @@
+import { config } from 'dotenv'
 import express, { json } from 'express'
 import cors from 'cors'
-import { config } from 'dotenv'
 import { connectToDB } from './config/mongoDb.js'
 import categoryRoutes from './routes/categories.js'
 import productRoutes from './routes/products.js'
