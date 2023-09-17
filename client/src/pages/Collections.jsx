@@ -23,7 +23,7 @@ export default function Collections() {
           <HeaderLayout heading='Collections' />
           {error && <p className='fs-5'>{error.message}</p>}
           {loading && <Loader />}
-          <Row className='gy-3'>
+          <Row className='gy-3 justify-content-around'>
             {data.map((cat) => (
               <Col md={4} key={cat._id}>
                 <Link to={`/collections/${cat.name}`} className='collection'>
