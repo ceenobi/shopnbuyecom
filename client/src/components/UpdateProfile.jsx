@@ -90,7 +90,6 @@ export default function UpdateProfile() {
             id='username'
             name='username'
             className='w-100 inputReg mb-0'
-            autoFocus
             {...register('username', registerOptions.username)}
           />
           {errors?.username?.message && (
@@ -111,8 +110,9 @@ export default function UpdateProfile() {
           )}
         </div>
         <div
-          className=' inputRegBox mb-1 fs-5'
+          className='inputRegBox mb-1 fs-6'
           onClick={() => setShowPass(!showPass)}
+          style={{ cursor: 'pointer' }}
         >
           Update password?{' '}
           <span

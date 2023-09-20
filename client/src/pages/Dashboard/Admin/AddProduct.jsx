@@ -56,7 +56,7 @@ export default function AddProduct() {
       const res = await createNewProduct(newProduct, currentUser?.access_token)
       if (res.status === 201) {
         toast.success(`Product created successfully`)
-        reset(data)
+        reset()
       }
     } catch (error) {
       console.log(error)
@@ -92,7 +92,7 @@ export default function AddProduct() {
                   className='w-100 inputReg mb-0'
                   autoFocus
                   {...register('title', {
-                    required: 'Email is required.',
+                    required: 'Title is required.',
                   })}
                 />
                 {errors?.title && (
@@ -156,7 +156,7 @@ export default function AddProduct() {
                 <select
                   name='category'
                   id='category'
-                  className='px-3 py-1'
+                  className='px-3 py-1 mx-2'
                   {...register('category', {
                     required: 'Category is required.',
                   })}

@@ -80,23 +80,47 @@ export default function Orders() {
                     <td>{order.shippingDetails.fullname}</td>
                     <td>{formatCurrency(order.totalPrice)}</td>
                     <td>{order.paymentMethod}</td>
-                    <td>{order.isPaid ? 'Paid' : 'Not Paid'}</td>
-                    <td>
+                    <td
+                      className={
+                        order.isPaid ? 'text-success fw-medium' : 'text-black'
+                      }
+                    >
+                      {order.isPaid ? 'Paid' : 'Not Paid'}
+                    </td>
+                    <td
+                      className={
+                        (order.status === 0 && 'text-warning') ||
+                        (order.status === 1 && 'text-danger') ||
+                        (order.status === 2 && 'text-success fw-medium')
+                      }
+                    >
                       {order.status === 0 && 'Waiting'}
                       {order.status === 1 && 'Pocessing'}
                       {order.status === 2 && 'Fulfilled'}
                     </td>
-                    <td>{order.isDelivered ? 'DELIVERED' : 'Pending'}</td>
+                    <td
+                      className={
+                        order.isDelivered
+                          ? 'text-success fw-medium'
+                          : 'text-black'
+                      }
+                    >
+                      {order.isDelivered ? 'DELIVERED' : 'Pending'}
+                    </td>
                     <td>
                       <Button
-                        variant={
-                          order.isDelivered === true ? 'success' : 'warning'
-                        }
-                        className='rounded-0 fw-bold'
+                        variant={order.isDelivered ? 'success' : 'warning'}
+                        className='rounded-0 fw-bold w-100'
                         onClick={() => handleUpdate(order._id)}
                         disabled={order.isDelivered === true}
                       >
-                        {order.isDelivered === true ? 'COMPLETE' : 'UPDATE'}
+                        {order.isDelivered && 'COMPLETED'}
+                        {order.isDelivered === false &&
+                          order.status === 0 &&
+                          'UPDATE'}
+                        {order.isDelivered === false &&
+                          order.status === 1 &&
+                          'FULFILL'}
                       </Button>
                     </td>
                   </tr>
