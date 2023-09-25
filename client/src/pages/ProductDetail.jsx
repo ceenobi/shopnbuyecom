@@ -67,6 +67,9 @@ export default function ProductDetail() {
 
   const handleLike = async () => {
     try {
+      if (!currentUser) {
+        toast.error('Pls sign in to like')
+      }
       await likeProduct(
         state?.product._id,
         currentUser?.user?._id,
@@ -75,7 +78,7 @@ export default function ProductDetail() {
       getProductDetail()
       toast.success(`You liked this`)
     } catch (error) {
-      toast.error('Unable to like, pls sign in')
+      toast.error('Error liking product')
     }
   }
 
