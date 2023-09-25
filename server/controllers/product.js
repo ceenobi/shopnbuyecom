@@ -75,10 +75,12 @@ export const likeProduct = async (req, res) => {
   const id = req.user.id
   const productId = req.params.productId
   try {
-    await Product.findByIdAndUpdate(productId, {
+    const pp = await Product.findByIdAndUpdate(productId, {
       $addToSet: { likes: id },
     })
-    res.status(200).json('Product liked')
+    if (!pp) return next(customError(404, "Can't find product!"))
+    const updatedProduct = await pp.save()
+    res.status(200).json({ updatedProduct, msg: 'Product liked' })
   } catch (err) {
     res.status(500).json(err)
   }
@@ -88,10 +90,12 @@ export const dislikeProduct = async (req, res) => {
   const id = req.user.id
   const productId = req.params.productId
   try {
-    await Product.findByIdAndUpdate(productId, {
+    const pp = await Product.findByIdAndUpdate(productId, {
       $pull: { likes: id },
     })
-    res.status(200).json('Product disliked.')
+    if (!pp) return next(customError(404, "Can't find product!"))
+    const updatedProduct = await pp.save()
+    res.status(200).json({ updatedProduct, msg: 'Product disliked' })
   } catch (err) {
     res.status(500).json(err)
   }

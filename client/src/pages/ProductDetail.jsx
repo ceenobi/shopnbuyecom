@@ -20,12 +20,7 @@ import { initialState, productReducer } from '../reducers/productReducer'
 export default function ProductDetail() {
   const { slug } = useParams()
   const [state, dispatch] = useReducer(productReducer, initialState)
-  const {
-    data: allProducts,
-    error,
-    loading,
-    setData,
-  } = useDataFetching(getAllPoducts)
+  const { data: allProducts, error, loading } = useDataFetching(getAllPoducts)
   const [current, setCurrent] = useState(0)
   const [showPicModal, setShowPicModal] = useState(false)
   const { increaseBagQuantity, setShow, currentUser } = useStore()
@@ -77,11 +72,7 @@ export default function ProductDetail() {
         currentUser?.user?._id,
         currentUser?.access_token
       )
-      dispatch({
-        type: 'LIKE_PRODUCT_SUCCESS',
-        payload: currentUser?.user?._id,
-      })
-
+      getProductDetail()
       toast.success(`You liked this`)
     } catch (error) {
       toast.error('Unable to like, pls sign in')
@@ -95,11 +86,7 @@ export default function ProductDetail() {
         currentUser?.user?._id,
         currentUser?.access_token
       )
-      dispatch({
-        type: 'DISLIKE_PRODUCT_SUCCESS',
-        payload: currentUser?.user?._id,
-      })
-      setData(allProducts)
+      getProductDetail()
       toast.success(`You disliked this`)
     } catch (error) {
       toast.error('Something went wrong')
